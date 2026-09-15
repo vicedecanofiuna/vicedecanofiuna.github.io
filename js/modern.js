@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var whatsapp = document.createElement("a");
   whatsapp.className = "whatsapp-float";
-  whatsapp.href = "https://wa.me/595961840205";
+  whatsapp.href = "https://wa.me/595995360263";
   whatsapp.target = "_blank";
   whatsapp.rel = "noopener noreferrer";
   whatsapp.setAttribute("aria-label", "Contactar por WhatsApp");
