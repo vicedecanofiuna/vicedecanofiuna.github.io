@@ -53,6 +53,7 @@
   .regla strong { color: #8a6d00; }
   .regla .ref { font-size: 0.85em; color: #999; font-style: italic; display: block; margin-top: 4px; }
   .regla .puntos { display: inline-block; background: #003366; color: #fff; padding: 2px 8px; border-radius: 10px; font-weight: bold; font-size: 0.9em; margin-right: 5px; }
+  .regla ul { margin-left: 18px; margin-top: 6px; }
 
   .subtotal { background: #e3f2fd; padding: 8px 12px; border-radius: 6px; font-weight: bold; color: #003366; margin-top: 10px; font-size: 0.95em; }
 
@@ -100,13 +101,14 @@
   <p style="font-size:0.85em; margin-top:8px;">Resolución CD N° 1560/2024/005</p>
 </header>
 
+<!-- INFORMACIÓN AL POSTULANTE -->
 <div class="info">
   <strong>📖 Información importante para el postulante:</strong>
   <ul>
     <li>Puede postularse a un <strong>máximo de 10 materias por semestre</strong>.</li>
     <li>Puede postularse a un <strong>máximo de 2 materias por departamento</strong>.</li>
     <li>Debe indicar el <strong>orden de prioridad</strong> de cada materia (1 = mayor prioridad).</li>
-    <li>Si la materia es de <strong>curso profesional</strong>, debe acreditar <strong>experiencia laboral o investigación</strong> en la línea.</li>
+    <li>Si la materia es de <strong>curso profesional</strong>, debe acreditar <strong>experiencia laboral o investigación</strong> en la línea (sección E2).</li>
     <li>Se valorará la <strong>experiencia docente previa</strong> en la materia y el <strong>escalafonamiento</strong>.</li>
     <li>Los <strong>cursos de capacitación</strong> relacionados a la materia suman puntaje.</li>
   </ul>
@@ -114,6 +116,7 @@
 
 <form id="formConcurso" onsubmit="procesarFormulario(event)">
 
+<!-- ==================== DATOS DEL POSTULANTE ==================== -->
 <div class="card obligatorio">
   <h2>👤 Datos del Postulante</h2>
   <div class="field">
@@ -138,6 +141,7 @@
   </div>
 </div>
 
+<!-- ==================== MATERIAS A LAS QUE POSTULA ==================== -->
 <div class="card">
   <h2>📚 Materias a las que postula</h2>
   <p class="help">Máximo 10 materias por semestre · Máximo 2 por departamento · Indique orden de prioridad</p>
@@ -155,6 +159,7 @@
   <div class="subtotal">Total de materias seleccionadas: <span id="totalMaterias">0</span> / 10</div>
 </div>
 
+<!-- ==================== EXPERIENCIA DOCENTE ==================== -->
 <div class="card">
   <h2>👨‍🏫 Experiencia Docente</h2>
 
@@ -192,6 +197,7 @@
   </div>
 </div>
 
+<!-- ==================== EXPERIENCIA LABORAL / INVESTIGACIÓN ==================== -->
 <div class="card">
   <h2>💼 Experiencia Laboral / Investigación</h2>
   <p class="help">Requerido si postula a materias de <strong>curso profesional</strong>.</p>
@@ -208,7 +214,7 @@
 
   <div class="field">
     <label>Descripción de la experiencia laboral / investigación</label>
-    <textarea id="descripcionLaboral" placeholder="Describa brevemente su experiencia más relevante..."></textarea>
+    <textarea id="descripcionLaboral" placeholder="Describa brevemente su experiencia más relevante relacionada con las materias a las que postula..."></textarea>
   </div>
 
   <div class="field">
@@ -217,6 +223,7 @@
   </div>
 </div>
 
+<!-- ==================== CURSOS RELACIONADOS ==================== -->
 <div class="card">
   <h2>🎓 Cursos relacionados a las materias</h2>
   <p class="help">Seleccione los cursos de capacitación que haya realizado y que estén relacionados con las materias a las que postula.</p>
@@ -234,6 +241,7 @@
   </div>
 </div>
 
+<!-- ==================== A1 - POSTGRADO ==================== -->
 <div class="card">
   <h2>📌 A1. Postgrado (Tope 20)</h2>
 
@@ -241,7 +249,7 @@
     <div class="regla">
       <span class="puntos">Tope 20 pts</span>
       <strong>¿Qué puntúa?</strong> Solo el <strong>grado máximo</strong> alcanzado. No se suman entre sí.
-      <ul style="margin-left:18px; margin-top:6px;">
+      <ul>
         <li><strong>Doctorado relacionado</strong> con ranking ≥ UNA: 11 a 20 pts</li>
         <li><strong>Doctorado relacionado</strong> con ranking &lt; UNA: 6 a 10 pts</li>
         <li><strong>Maestría relacionada</strong> con ranking ≥ UNA: 9 a 15 pts</li>
@@ -301,6 +309,7 @@
   <div class="subtotal">Subtotal A1: <span id="subA1">0</span> / 20</div>
 </div>
 
+<!-- ==================== B1 - GRADO ==================== -->
 <div class="card">
   <h2>📌 B1. Grado (Tope 20)</h2>
 
@@ -308,7 +317,7 @@
     <div class="regla">
       <span class="puntos">Tope 20 pts</span>
       <strong>¿Qué puntúa?</strong> Solo el <strong>título de grado de mayor puntaje</strong>. No es sumativo.
-      <ul style="margin-left:18px; margin-top:6px;">
+      <ul>
         <li>Título de Ingeniero egresado de la <strong>FIUNA</strong>: 20 pts</li>
         <li>Título máximo de otra unidad académica <strong>UNA</strong> en área afín (mín. 3600hs): 15 pts</li>
         <li>Título de Ingeniero de otras universidades afín (ranking ≥ UNA = 12-20): 20 pts</li>
@@ -340,6 +349,7 @@
   <div class="subtotal">Subtotal B1: <span id="subB1">0</span> / 20</div>
 </div>
 
+<!-- ==================== A2 - DOCENCIA ==================== -->
 <div class="card">
   <h2>📌 A2. Docencia (Tope 10)</h2>
 
@@ -388,9 +398,69 @@
     </div>
   </div>
 
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">Hasta 3 pts</span>
+      <strong>¿Qué puntúa?</strong> Participación activa demostrable en <strong>plataformas virtuales oficiales</strong> de la Institución en las que haya sido docente.
+      <br><strong>Fórmula:</strong> 3 puntos para coordinación y liderazgo de la implementación, 0 puntos por la no participación.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.4</span>
+    </div>
+    <label>A2.4. Plataformas virtuales oficiales (máx 3)</label>
+    <div class="row">
+      <input type="number" id="puntA2_4" data-group="A2" min="0" max="3" value="0" onchange="calcular()">
+      <input type="text" placeholder="Rol desempeñado" id="comA2_4">
+      <input type="file" id="fileA2_4" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">0,75 p/año · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>docente en cátedra afín</strong> en la UNA o en carrera acreditada modelo nacional de otras universidades.
+      <br><strong>Fórmula:</strong> 0,75 puntos por año.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.5</span>
+    </div>
+    <label>A2.5. Docente cátedra afín UNA/acreditada (máx 3)</label>
+    <div class="row">
+      <input type="number" id="puntA2_5" data-group="A2" min="0" max="3" value="0" onchange="calcular()">
+      <input type="text" placeholder="Años y comentario" id="comA2_5">
+      <input type="file" id="fileA2_5" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">0,50 p/año · Tope 2</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>Auxiliar de la Enseñanza en UNA</strong> en cátedra afín.
+      <br><strong>Fórmula:</strong> 0,50 puntos por año.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.6</span>
+    </div>
+    <label>A2.6. Auxiliar Enseñanza UNA (máx 2)</label>
+    <div class="row">
+      <input type="number" id="puntA2_6" data-group="A2" min="0" max="2" value="0" onchange="calcular()">
+      <input type="text" placeholder="Años y comentario" id="comA2_6">
+      <input type="file" id="fileA2_6" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">Tope 2 pts</span>
+      <strong>¿Qué puntúa?</strong> Vinculación a FIUNA en <strong>gestión académica, fuera de aula</strong>.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.7</span>
+    </div>
+    <label>A2.7. Vinculación FIUNA gestión académica (máx 2)</label>
+    <div class="row">
+      <input type="number" id="puntA2_7" data-group="A2" min="0" max="2" value="0" onchange="calcular()">
+      <input type="text" placeholder="Descripción" id="comA2_7">
+      <input type="file" id="fileA2_7" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
   <div class="subtotal">Subtotal A2: <span id="subA2">0</span> / 10</div>
 </div>
 
+<!-- ==================== B2 - INVESTIGACIÓN ==================== -->
 <div class="card">
   <h2>📌 B2. Investigación (Tope 8)</h2>
 
@@ -424,9 +494,40 @@
     </div>
   </div>
 
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/proyecto · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>Docente Investigador de la UNA o FIUNA</strong>, ejerciendo el rol de investigador.
+      <br><strong>Fórmula:</strong> 1 punto por proyecto terminado en los últimos 5 años.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, B2.3</span>
+    </div>
+    <label>B2.3. Docente Investigador UNA/FIUNA (máx 3)</label>
+    <div class="row">
+      <input type="number" id="puntB2_3" data-group="B2" min="0" max="3" value="0" onchange="calcular()">
+      <input type="text" placeholder="Proyectos terminados" id="comB2_3">
+      <input type="file" id="fileB2_3" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/proyecto · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> No categorizado en PRONII pero <strong>líder de proyectos de investigación</strong> en los últimos 5 años.
+      <br><strong>Fórmula:</strong> 1 punto por proyecto.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, B2.4</span>
+    </div>
+    <label>B2.4. Líder proyectos investigación (máx 3)</label>
+    <div class="row">
+      <input type="number" id="puntB2_4" data-group="B2" min="0" max="3" value="0" onchange="calcular()">
+      <input type="text" placeholder="Cantidad de proyectos" id="comB2_4">
+      <input type="file" id="fileB2_4" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
   <div class="subtotal">Subtotal B2: <span id="subB2">0</span> / 8</div>
 </div>
 
+<!-- ==================== C2 - EXTENSIÓN ==================== -->
 <div class="card">
   <h2>📌 C2. Extensión (Tope 7)</h2>
 
@@ -462,8 +563,10 @@
   <div class="subtotal">Subtotal C2: <span id="subC2">0</span> / 7</div>
 </div>
 
+<!-- ==================== D2 - PUBLICACIONES ==================== -->
 <div class="card">
   <h2>📌 D2. Publicaciones (Tope 10)</h2>
+  <p class="help">Para asignaturas de Ciencias Básicas y Ciencias de la Ingeniería.</p>
 
   <div class="item">
     <div class="regla">
@@ -494,9 +597,96 @@
     </div>
   </div>
 
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">0,5 p/publicación · Tope 2</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>co-autor de Libros o Capítulos de Libros</strong> afines a la cátedra.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, D2.3</span>
+    </div>
+    <label>D2.3. Co-autor Libros/Capítulos (máx 2)</label>
+    <div class="row">
+      <input type="number" id="puntD2_3" data-group="D2" min="0" max="2" value="0" onchange="calcular()">
+      <input type="text" placeholder="Cantidad" id="comD2_3">
+      <input type="file" id="fileD2_3" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/publicación · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>autor o co-autor de artículos en Congresos</strong> de temas afines a la cátedra en concurso.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, D2.4</span>
+    </div>
+    <label>D2.4. Artículos en Congresos (máx 3)</label>
+    <div class="row">
+      <input type="number" id="puntD2_4" data-group="D2" min="0" max="3" value="0" onchange="calcular()">
+      <input type="text" placeholder="Cantidad" id="comD2_4">
+      <input type="file" id="fileD2_4" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/material · Tope 2</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>autor de material didáctico</strong> sobre la asignatura en concurso.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, D2.5</span>
+    </div>
+    <label>D2.5. Material didáctico (máx 2)</label>
+    <div class="row">
+      <input type="number" id="puntD2_5" data-group="D2" min="0" max="2" value="0" onchange="calcular()">
+      <input type="text" placeholder="Cantidad" id="comD2_5">
+      <input type="file" id="fileD2_5" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
   <div class="subtotal">Subtotal D2: <span id="subD2">0</span> / 10</div>
 </div>
 
+<!-- ==================== E2 - EXPERIENCIA AFÍN A LA CÁTEDRA ==================== -->
+<div class="card" id="seccionE2" style="display:none;">
+  <h2>📌 E2. Experiencia afín a la cátedra (Tope 10)</h2>
+  <p class="help"><strong>Solo para materias de Aplicación de la Ingeniería, Complementarias y Optativas (PROFESIONALES).</strong></p>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/año · Tope 10</span>
+      <strong>¿Qué puntúa?</strong> Experiencia laboral en el ejercicio profesional o en <strong>investigación científica</strong> en el área específica de la asignatura en concurso.
+      <br><strong>Fórmula:</strong> 1 punto por año de experiencia.
+      <br><strong>Requisito excluyente:</strong> Para materias de Aplicación de Ingeniería, Complementarias y Optativas, es <strong>REQUISITO EXCLUYENTE</strong> presentar certificado de experiencia laboral profesional expedida por empresas o contratos de prestación de servicios personales y/o experiencia académica-científica a través de publicaciones científicas afines a la asignatura en la cual concursa o postula, realizadas en los últimos diez años.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, E2.1</span>
+    </div>
+    <label>E2.1. Experiencia laboral o investigación (máx 10)</label>
+    <div class="row">
+      <input type="number" id="puntE2_1" data-group="E2" min="0" max="10" value="0" onchange="calcular()">
+      <input type="text" placeholder="Años de experiencia y área" id="comE2_1">
+      <input type="file" id="fileE2_1" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">Hasta 5 pts</span>
+      <strong>¿Qué puntúa?</strong> Liderazgo en el área específica de la asignatura en concurso.
+      <br><strong>Demostrable a través de:</strong>
+      <ul>
+        <li>Proyectos de gran aporte en el sector público o privado</li>
+        <li>Reconocimientos a nivel nacional o internacional</li>
+        <li>Desempeño en cargos directivos en Instituciones u Organismos Nacionales e Internacionales</li>
+      </ul>
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, E2.2</span>
+    </div>
+    <label>E2.2. Liderazgo en el área específica (máx 5)</label>
+    <div class="row">
+      <input type="number" id="puntE2_2" data-group="E2" min="0" max="5" value="0" onchange="calcular()">
+      <input type="text" placeholder="Describa el liderazgo" id="comE2_2">
+      <input type="file" id="fileE2_2" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
+  <div class="subtotal">Subtotal E2: <span id="subE2">0</span> / 10</div>
+</div>
+
+<!-- ==================== F2 - DESEMPEÑO ==================== -->
 <div class="card">
   <h2>📌 F2. Desempeño (Tope 5)</h2>
 
@@ -504,7 +694,7 @@
     <div class="regla">
       <span class="puntos">-3 a +5 pts</span>
       <strong>¿Qué puntúa?</strong> Según el <strong>Informe de Evaluación del Desempeño Docente</strong> en la misma asignatura.
-      <ul style="margin-left:18px; margin-top:6px;">
+      <ul>
         <li><strong>Bonificación:</strong> Mayor al 50% = 2 pts · Mayor al 75% = 5 pts</li>
         <li><strong>Penalización:</strong> Inferior al 50% = -3 pts</li>
       </ul>
@@ -521,11 +711,13 @@
   <div class="subtotal">Subtotal F2: <span id="subF2">0</span> / 5</div>
 </div>
 
+<!-- ==================== TOTAL ==================== -->
 <div class="total">
   <span class="label">TOTAL GENERAL</span>
   <span class="num"><span id="totalGeneral">0</span> / 80</span>
 </div>
 
+<!-- ==================== BOTÓN ==================== -->
 <div class="card" style="text-align:center;">
   <button type="submit" id="btnEnviar">📦 Generar ZIP con mis comprobantes</button>
   <div id="status" class="status"></div>
@@ -543,6 +735,7 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ==================== DATOS DE MATERIAS ====================
 const MATERIAS = [
   { codigo: '23011', nombre: 'Mecánica y Calor', depto: 'Ciencias Básicas', profesional: false },
   { codigo: '23012', nombre: 'Cálculo 1', depto: 'Ciencias Básicas', profesional: false },
@@ -573,6 +766,7 @@ const CURSOS = [
   'Redacción Científica'
 ];
 
+// ==================== MATERIAS A LAS QUE POSTULA ====================
 let contadorMaterias = 0;
 
 function agregarMateria() {
@@ -621,6 +815,7 @@ function agregarMateria() {
       ? '<span class="tag" style="background:#dc3545;">PROFESIONAL</span><br><small>Requiere exp. laboral/investigación</small>'
       : '<span class="tag" style="background:#28a745;">BÁSICA</span>';
     validarDepartamentos();
+    toggleE2();
   });
 
   const btnEliminar = document.createElement('button');
@@ -633,6 +828,7 @@ function agregarMateria() {
     renumerarMaterias();
     actualizarTotalMaterias();
     validarDepartamentos();
+    toggleE2();
   };
   fila.appendChild(btnEliminar);
 
@@ -679,6 +875,26 @@ function validarDepartamentos() {
   }
 }
 
+function toggleE2() {
+  let hayProfesional = false;
+  document.querySelectorAll('#listaMaterias .materia-select').forEach(function(sel) {
+    if (sel.value && sel.value.split('|')[3] === 'true') {
+      hayProfesional = true;
+    }
+  });
+
+  const seccionE2 = document.getElementById('seccionE2');
+  if (seccionE2) {
+    seccionE2.style.display = hayProfesional ? 'block' : 'none';
+    if (!hayProfesional) {
+      document.getElementById('puntE2_1').value = 0;
+      document.getElementById('puntE2_2').value = 0;
+      calcular();
+    }
+  }
+}
+
+// ==================== MATERIAS QUE YA ENSEÑÓ ====================
 function cargarMateriasEnsenadas() {
   const cont = document.getElementById('materiasEnsenadas');
   MATERIAS.forEach(function(m) {
@@ -693,6 +909,7 @@ function cargarMateriasEnsenadas() {
   });
 }
 
+// ==================== CURSOS ====================
 function cargarCursos() {
   const cont = document.getElementById('cursosRelacionados');
   CURSOS.forEach(function(curso) {
@@ -707,11 +924,13 @@ function cargarCursos() {
   });
 }
 
+// ==================== ESCALAFONADO ====================
 function toggleEscalafonado() {
   const val = document.getElementById('escalafonado').value;
   document.getElementById('escalafonadoDetalle').style.display = val === 'si' ? 'block' : 'none';
 }
 
+// ==================== CÁLCULO ====================
 function calcular() {
   const topes = { A1: 20, B1: 20, A2: 10, B2: 8, C2: 7, D2: 10, E2: 10, F2: 5 };
   const subtotales = { A1: 0, B1: 0, A2: 0, B2: 0, C2: 0, D2: 0, E2: 0, F2: 0 };
@@ -742,7 +961,7 @@ function calcular() {
   document.getElementById('subB1').textContent = subB1Final.toFixed(2);
 
   let totalTitulos = Math.min(subA1Final + subB1Final, 40);
-  let totalMeritos = Math.min(subtotales.A2 + subtotales.B2 + subtotales.C2 + subtotales.D2 + subtotales.F2, 40);
+  let totalMeritos = Math.min(subtotales.A2 + subtotales.B2 + subtotales.C2 + subtotales.D2 + subtotales.E2 + subtotales.F2, 40);
   const total = Math.min(totalTitulos + totalMeritos, 80);
   document.getElementById('totalGeneral').textContent = total.toFixed(2);
 }
@@ -750,6 +969,7 @@ function calcular() {
 document.getElementById('selectorA1').addEventListener('change', calcular);
 document.getElementById('selectorB1').addEventListener('change', calcular);
 
+// ==================== PROCESAR FORMULARIO ====================
 async function procesarFormulario(e) {
   e.preventDefault();
   const status = document.getElementById('status');
@@ -823,6 +1043,7 @@ async function procesarFormulario(e) {
         B2: parseFloat(document.getElementById('subB2').textContent),
         C2: parseFloat(document.getElementById('subC2').textContent),
         D2: parseFloat(document.getElementById('subD2').textContent),
+        E2: parseFloat(document.getElementById('subE2').textContent),
         F2: parseFloat(document.getElementById('subF2').textContent)
       },
       total: parseFloat(document.getElementById('totalGeneral').textContent),
@@ -843,7 +1064,7 @@ async function procesarFormulario(e) {
       }
     }
 
-    const secciones = ['A1', 'B1', 'A2', 'B2', 'C2', 'D2', 'F2'];
+    const secciones = ['A1', 'B1', 'A2', 'B2', 'C2', 'D2', 'E2', 'F2'];
     document.querySelectorAll('input[type=file]').forEach(function(input) {
       const id = input.id;
       if (['cv', 'titulos', 'manifestacion'].includes(id)) return;
@@ -880,9 +1101,11 @@ async function procesarFormulario(e) {
   }
 }
 
+// ==================== INICIALIZACIÓN ====================
 cargarMateriasEnsenadas();
 cargarCursos();
 agregarMateria();
+toggleE2();
 calcular();
 </script>
 </body>
