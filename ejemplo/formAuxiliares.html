@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documentos Obligatorios - Concurso Auxiliar FIUNA</title>
+<title>Postulación Auxiliar de Enseñanza - FIUNA</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; color: #333; padding: 20px; }
-  .container { max-width: 700px; margin: 0 auto; }
+  .container { max-width: 850px; margin: 0 auto; }
   
   header { background: linear-gradient(135deg, #003366, #00509e); color: #fff; padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
   header h1 { font-size: 1.4em; margin-bottom: 8px; }
@@ -16,19 +16,54 @@
   .card { background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 20px; }
   .card h2 { color: #003366; font-size: 1.1em; border-bottom: 2px solid #003366; padding-bottom: 10px; margin-bottom: 20px; }
   
+  /* Tutorial */
+  .tutorial { background: #fff8e1; border-left: 5px solid #ffc107; }
+  .tutorial h2 { color: #b38600; border-bottom-color: #ffc107; }
+  .tutorial details { margin-bottom: 12px; background: #fff; border-radius: 6px; padding: 10px 15px; border: 1px solid #ffe082; }
+  .tutorial summary { font-weight: 600; cursor: pointer; color: #003366; font-size: 0.95em; list-style: none; }
+  .tutorial summary::-webkit-details-marker { display: none; }
+  .tutorial summary::before { content: "▶ "; font-size: 0.8em; color: #ffc107; }
+  .tutorial details[open] summary::before { content: "▼ "; }
+  .tutorial ul { margin-top: 10px; padding-left: 20px; font-size: 0.88em; color: #555; line-height: 1.6; }
+  .tutorial li { margin-bottom: 5px; }
+  .tutorial .highlight { background: #fff3cd; padding: 8px 12px; border-radius: 6px; font-size: 0.85em; margin-top: 10px; border-left: 3px solid #ffc107; }
+
   .field { margin-bottom: 18px; }
   .field label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.95em; }
   .field .help { font-size: 0.8em; color: #777; margin-bottom: 8px; }
-  .field input[type=text], .field input[type=email], .field select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95em; }
+  .field input[type=text], .field input[type=email], .field input[type=number], .field select, .field textarea { 
+    width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95em; font-family: inherit;
+  }
+  .field textarea { resize: vertical; min-height: 80px; }
+  
+  /* Materias con prioridad */
+  .materia-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; padding: 8px; background: #f9fafb; border-radius: 6px; border-left: 3px solid #00509e; }
+  .materia-row select { flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  .materia-row .prioridad { font-weight: bold; color: #003366; width: 30px; text-align: center; }
+  .materia-row button { background: #dc3545; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; width: auto; margin: 0; }
+  .materia-row button:hover { background: #c82333; }
+  .btn-add { background: #28a745; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85em; margin-top: 5px; font-weight: 600; }
+  .btn-add:hover { background: #218838; }
+  
+  /* Cursos */
+  .curso-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; padding: 8px; background: #f9fafb; border-radius: 6px; border-left: 3px solid #28a745; }
+  .curso-row input { flex: 1; min-width: 100px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.85em; }
+  .curso-row button { background: #dc3545; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; width: auto; margin: 0; }
   
   .doc-item { padding: 15px; background: #f9fafb; border-left: 4px solid #00509e; border-radius: 6px; margin-bottom: 12px; }
   .doc-item label { font-weight: 600; display: block; margin-bottom: 6px; font-size: 0.95em; }
   .doc-item .help { font-size: 0.8em; color: #777; margin-bottom: 8px; }
   .doc-item input[type=file] { font-size: 0.9em; width: 100%; }
   
-  button { background: #003366; color: #fff; border: none; padding: 15px; font-size: 1em; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 10px; }
-  button:hover { background: #00509e; }
-  button:disabled { background: #999; cursor: not-allowed; }
+  .radio-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 5px; }
+  .radio-group label { font-weight: normal; display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 0.9em; }
+  
+  .alerta { background: #fff3cd; border: 1px solid #ffc107; padding: 12px; border-radius: 6px; font-size: 0.85em; margin-bottom: 15px; color: #856404; }
+  .alerta strong { color: #b38600; }
+  
+  button[type=submit] { background: #003366; color: #fff; border: none; padding: 15px; font-size: 1em; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; margin-top: 10px; }
+  button[type=submit]:hover { background: #00509e; }
+  button[type=submit]:disabled { background: #999; cursor: not-allowed; }
   
   .status { padding: 15px; border-radius: 8px; margin-top: 15px; display: none; font-size: 0.9em; text-align: center; }
   .status.ok { background: #d4edda; color: #155724; display: block; }
@@ -42,10 +77,81 @@
 <div class="container">
 
 <header>
-  <h1>📋 Documentos Obligatorios</h1>
-  <p>Concurso Auxiliar de Enseñanza - FIUNA</p>
+  <h1>📋 Postulación Auxiliar de Enseñanza</h1>
+  <p>Concurso Docente - FIUNA</p>
   <p style="font-size:0.85em; margin-top:5px;">Sede San Lorenzo - Departamento de Ciencias Básicas</p>
 </header>
+
+<!-- TUTORIAL -->
+<div class="card tutorial">
+  <h2>💡 Información para el Postulante</h2>
+  
+  <details open>
+    <summary>📌 Requisitos Académicos</summary>
+    <ul>
+      <li><strong>Estudiantes FIUNA:</strong> Ser alumno regular del semestre inmediato superior y tener calificación mínima de <strong>4 (cuatro)</strong> en la asignatura a postular.</li>
+      <li><strong>Estudiantes de otras Unidades UNA:</strong> Mismos requisitos + Certificado de Estudios y Constancia de Antecedentes Disciplinarios.</li>
+      <li><strong>Egresados/Profesionales:</strong> No se exige nota mínima, pero deben presentar todos los documentos obligatorios.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>📄 Documentos y Formatos</summary>
+    <ul>
+      <li><strong>Formatos aceptados:</strong> PDF o imagen (JPG/PNG).</li>
+      <li><strong>Tamaño máximo:</strong> 10 MB por archivo.</li>
+      <li><strong>CV Normalizado:</strong> Formato UNA o CONACYT, actualizado y firmado.</li>
+      <li><strong>Antecedentes Policiales:</strong> Se exige el <em>original</em>.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>⚠️ Causas de Descalificación Automática</summary>
+    <ul>
+      <li>Omisión o presentación incompleta de los documentos.</li>
+      <li>No cumplir con la calificación mínima (estudiantes).</li>
+      <li>No ser alumno regular del semestre inmediato superior (estudiantes).</li>
+      <li>Presentar información falsa o alterada.</li>
+    </ul>
+    <div class="highlight">⚠️ <strong>Importante:</strong> La omisión de cualquier documento dará lugar a la descalificación automática.</div>
+  </details>
+
+  <details>
+    <summary>🚫 Límite de Cátedras (Art. 10°)</summary>
+    <ul>
+      <li><strong>Estudiantes:</strong> Máximo <strong>2 cátedras</strong> en un mismo periodo académico.</li>
+      <li><strong>Profesionales/Escalafonados/Encargados:</strong> Máximo <strong>2 cátedras por Departamento</strong> y <strong>10 asignaturas en toda la FIUNA</strong>.</li>
+      <li>Si ya tiene otras cátedras asignadas, debe declararlo para evitar conflictos.</li>
+    </ul>
+    <div class="highlight">⚠️ <strong>Atención:</strong> Si es Docente Escalafonado o Encargado, no puede exceder las 10 asignaturas en toda la FIUNA ni las 2 por departamento.</div>
+  </details>
+
+  <details>
+    <summary>🕒 Compromiso Horario y Funciones</summary>
+    <ul>
+      <li>Carga horaria de <strong>2 a 4 horas cátedras</strong> semanales.</li>
+      <li>Respetar los horarios establecidos por la Cátedra.</li>
+      <li>Funciones: conducir trabajos prácticos, asesorar alumnos, corregir exámenes, asistir a reuniones.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>📝 Autoevaluación (Ex-Auxiliares)</summary>
+    <ul>
+      <li>Si enseñó en el 1er Ciclo 2026, debe presentar su <strong>informe de actividades y autoevaluación docente</strong>.</li>
+      <li>Complete la sección de autoevaluación con sinceridad; será considerada en la selección.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🎯 Prioridad de Materias</summary>
+    <ul>
+      <li>Puede postular a <strong>hasta 2 materias</strong> (Art. 10°).</li>
+      <li>Indique el orden de prioridad: 1 = primera opción, 2 = segunda opción.</li>
+      <li>El sistema generará una carpeta por cada materia.</li>
+    </ul>
+  </details>
+</div>
 
 <form id="formDocs" onsubmit="generarZip(event)">
 
@@ -61,25 +167,193 @@
       <input type="text" id="ci" required placeholder="Ej: 1234567">
     </div>
     <div class="field">
-      <label>Materia a la que postula *</label>
-      <select id="materia" required>
+      <label>Correo electrónico *</label>
+      <input type="email" id="email" required placeholder="correo@ejemplo.com">
+    </div>
+    <div class="field">
+      <label>¿Es estudiante o profesional? *</label>
+      <select id="tipoPostulante" required onchange="toggleEstudiante()">
         <option value="">-- Seleccione --</option>
-        <option value="23011 Mecánica y Calor">23011 Mecánica y Calor</option>
-        <option value="23012 Cálculo 1">23012 Cálculo 1</option>
-        <option value="23013 Geometría Vectorial">23013 Geometría Vectorial</option>
-        <option value="23014 Algebra Moderna">23014 Algebra Moderna</option>
-        <option value="23016 Dibujo Técnico">23016 Dibujo Técnico</option>
-        <option value="23015 Geometría Descriptiva">23015 Geometría Descriptiva</option>
-        <option value="23031 Electricidad y Magnetismo">23031 Electricidad y Magnetismo</option>
-        <option value="23032 Ecuaciones Diferenciales">23032 Ecuaciones Diferenciales</option>
-        <option value="23033 Probabilidad">23033 Probabilidad</option>
-        <option value="23034 Análisis Vectorial">23034 Análisis Vectorial</option>
-        <option value="23035 Estática">23035 Estática</option>
-        <option value="23431-23731 Estructura de Datos y Algoritmos">23431-23731 Estructura de Datos y Algoritmos</option>
-        <option value="23432 Instrumentación Electrónica Básica">23432 Instrumentación Electrónica Básica</option>
-        <option value="23531 Físico-Química Ambiental">23531 Físico-Química Ambiental</option>
+        <option value="estudiante">Estudiante FIUNA</option>
+        <option value="estudiante_una">Estudiante de otra Unidad UNA</option>
+        <option value="profesional">Egresado / Profesional</option>
       </select>
     </div>
+    <div class="field" id="campoNota" style="display:none;">
+      <label>Calificación en la asignatura a postular *</label>
+      <div class="help">Si es profesional, coloque 0. Si es estudiante, coloque la nota final (mínimo 4).</div>
+      <input type="number" id="notaAsignatura" min="0" max="10" value="0">
+    </div>
+  </div>
+
+  <!-- SITUACIÓN DOCENTE ACTUAL -->
+  <div class="card">
+    <h2>🏛️ Situación Docente Actual</h2>
+    <div class="alerta">
+      <strong>⚠️ Importante:</strong> Si es Docente Escalafonado o Encargado, no puede superar las <strong>10 asignaturas en toda la FIUNA</strong> ni las <strong>2 cátedras por Departamento</strong>.
+    </div>
+    
+    <div class="field">
+      <label>¿Cuál es su situación actual en la FIUNA? *</label>
+      <select id="situacionDocente" required onchange="toggleCatedras()">
+        <option value="">-- Seleccione --</option>
+        <option value="ninguna">No soy docente en FIUNA</option>
+        <option value="escalafonado">Docente Escalafonado</option>
+        <option value="encargado">Docente Encargado</option>
+        <option value="auxiliar">Auxiliar de Enseñanza (activo)</option>
+      </select>
+    </div>
+
+    <div id="campoCatedras" style="display:none;">
+      <div class="field">
+        <label>¿Cuántas asignaturas tiene actualmente en toda la FIUNA? *</label>
+        <div class="help">Incluya todas las cátedras en las que se desempeña actualmente.</div>
+        <input type="number" id="totalAsignaturas" min="0" max="20" value="0">
+      </div>
+      <div class="field">
+        <label>¿Cuántas asignaturas tiene en el Departamento de Ciencias Básicas? *</label>
+        <input type="number" id="asignaturasDepto" min="0" max="10" value="0">
+      </div>
+      <div class="field">
+        <label>Detalle de asignaturas actuales (opcional)</label>
+        <div class="help">Ej: 23011 Mecánica y Calor, 23012 Cálculo 1</div>
+        <textarea id="detalleAsignaturas" placeholder="Liste las asignaturas en las que se desempeña actualmente..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIAS CON PRIORIDAD -->
+  <div class="card">
+    <h2>🎯 Materias a Postular (con Prioridad)</h2>
+    <div class="help" style="margin-bottom:15px;">Puede seleccionar hasta 2 materias. Indique el orden de prioridad (1 = primera opción).</div>
+    
+    <div id="materiasContainer">
+      <div class="materia-row">
+        <span class="prioridad">1°</span>
+        <select class="materia-select" required>
+          <option value="">-- Seleccione materia --</option>
+          <option value="23011 Mecánica y Calor">23011 Mecánica y Calor</option>
+          <option value="23012 Cálculo 1">23012 Cálculo 1</option>
+          <option value="23013 Geometría Vectorial">23013 Geometría Vectorial</option>
+          <option value="23014 Algebra Moderna">23014 Algebra Moderna</option>
+          <option value="23016 Dibujo Técnico">23016 Dibujo Técnico</option>
+          <option value="23015 Geometría Descriptiva">23015 Geometría Descriptiva</option>
+          <option value="23031 Electricidad y Magnetismo">23031 Electricidad y Magnetismo</option>
+          <option value="23032 Ecuaciones Diferenciales">23032 Ecuaciones Diferenciales</option>
+          <option value="23033 Probabilidad">23033 Probabilidad</option>
+          <option value="23034 Análisis Vectorial">23034 Análisis Vectorial</option>
+          <option value="23035 Estática">23035 Estática</option>
+          <option value="23431-23731 Estructura de Datos y Algoritmos">23431-23731 Estructura de Datos y Algoritmos</option>
+          <option value="23432 Instrumentación Electrónica Básica">23432 Instrumentación Electrónica Básica</option>
+          <option value="23531 Físico-Química Ambiental">23531 Físico-Química Ambiental</option>
+        </select>
+      </div>
+    </div>
+    <button type="button" class="btn-add" onclick="agregarMateria()">+ Agregar segunda materia</button>
+  </div>
+
+  <!-- EXPERIENCIA COMO AUXILIAR -->
+  <div class="card">
+    <h2>📚 Experiencia como Auxiliar</h2>
+    <div class="field">
+      <label>¿Ya fue Auxiliar de Enseñanza en la FIUNA? *</label>
+      <select id="fueAuxiliar" required onchange="toggleExperiencia()">
+        <option value="">-- Seleccione --</option>
+        <option value="no">No</option>
+        <option value="si">Sí</option>
+      </select>
+    </div>
+
+    <div id="camposExperiencia" style="display:none;">
+      <div class="field">
+        <label>¿Cuántos años de experiencia tiene como Auxiliar? *</label>
+        <select id="aniosExperiencia" required>
+          <option value="">-- Seleccione --</option>
+          <option value="1">1 año</option>
+          <option value="2">2 años</option>
+          <option value="3">3 años</option>
+          <option value="4">4 años</option>
+          <option value="5">5 años o más</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>¿En qué materias fue Auxiliar? *</label>
+        <div class="help">Indique las materias y los periodos. Ej: 23012 Cálculo 1 (2025-2), 23033 Probabilidad (2026-1)</div>
+        <textarea id="materiasAuxiliar" placeholder="Ej: 23012 Cálculo 1 (2025-2), 23033 Probabilidad (2026-1)..." required></textarea>
+      </div>
+      <div class="field">
+        <label>¿En qué periodos fue Auxiliar? *</label>
+        <div class="help">Ej: 2025-2, 2026-1</div>
+        <textarea id="periodosAuxiliar" placeholder="Describa los periodos en los que se desempeñó como auxiliar..." required></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTOEVALUACIÓN AMPLIADA (CONDICIONAL) -->
+  <div class="card" id="cardAutoevaluacion" style="display:none;">
+    <h2>📝 Autoevaluación Docente (Ex-Auxiliar)</h2>
+    
+    <div class="field">
+      <label>¿Enseñó en el 1er Ciclo 2026? *</label>
+      <select id="enseno2026" required>
+        <option value="">-- Seleccione --</option>
+        <option value="no_enseno">No enseñé en el semestre anterior</option>
+        <option value="si_presente">Sí presenté mis informes</option>
+        <option value="no_presente">No presenté mis informes</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Puntaje de Autoevaluación (1 al 10) *</label>
+      <div class="help">¿Cómo califica su desempeño general como auxiliar en periodos anteriores?</div>
+      <input type="number" id="puntajeAuto" min="1" max="10" value="5" required>
+    </div>
+
+    <div class="field">
+      <label>Principales logros como Auxiliar *</label>
+      <div class="help">Describa cómo su labor contribuyó al aprendizaje de los alumnos o al funcionamiento de la cátedra.</div>
+      <textarea id="logros" placeholder="Ej: Implementé material didáctico adicional, mejoré la tasa de aprobación en prácticos..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Dificultades encontradas y cómo las resolvió *</label>
+      <div class="help">Describa situaciones complejas y su capacidad de resolución.</div>
+      <textarea id="dificultades" placeholder="Ej: Alumnos con dificultades en temas base, resolví con tutorías personalizadas..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Áreas de Mejora para este nuevo periodo *</label>
+      <div class="help">¿Qué aspectos cree que debe mejorar?</div>
+      <textarea id="mejoras" placeholder="Ej: Mayor puntualidad en la entrega de informes, mejor comunicación con el Jefe de Cátedra..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>¿Cómo manejaría un conflicto con un alumno? *</label>
+      <div class="help">Buscamos evaluar su capacidad de mediación y liderazgo.</div>
+      <textarea id="conflicto" placeholder="Ej: Escucharía ambas partes, mantendría la calma y buscaría una solución consensuada..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>¿Qué aportaría a la cátedra en este nuevo periodo? *</label>
+      <textarea id="aporte" placeholder="Ej: Mayor compromiso, nuevas metodologías de enseñanza, apoyo en corrección..."></textarea>
+    </div>
+  </div>
+
+  <!-- CURSOS RELACIONADOS -->
+  <div class="card">
+    <h2>🎓 Cursos Relacionados con la Materia</h2>
+    <div class="help" style="margin-bottom:15px;">Agregue cursos, talleres o capacitaciones relacionadas con la materia a la que postula.</div>
+    
+    <div id="cursosContainer">
+      <div class="curso-row">
+        <input type="text" class="curso-nombre" placeholder="Nombre del curso">
+        <input type="text" class="curso-institucion" placeholder="Institución">
+        <input type="number" class="curso-anio" placeholder="Año" min="2000" max="2026">
+        <input type="number" class="curso-horas" placeholder="Horas" min="1">
+        <button type="button" onclick="this.parentElement.remove()">✕</button>
+      </div>
+    </div>
+    <button type="button" class="btn-add" onclick="agregarCurso()">+ Agregar curso</button>
   </div>
 
   <!-- DOCUMENTOS OBLIGATORIOS -->
@@ -106,7 +380,7 @@
 
     <div class="doc-item">
       <label>4. Currículo Vitae Normalizado (UNA o CONACYT) *</label>
-      <div class="help">Debe estar actualizado y firmado. Formatos: PDF, JPG</div>
+      <div class="help">Actualizado y firmado. Formatos: PDF, JPG</div>
       <input type="file" id="doc_cv" accept=".pdf,.jpg,.jpeg,.png" required>
     </div>
 
@@ -116,14 +390,14 @@
       <input type="file" id="doc_notas" accept=".pdf,.jpg,.jpeg,.png" required>
     </div>
 
-    <div class="doc-item">
-      <label>6. Certificado de Estudios (Solo si es de otra Unidad Académica) </label>
+    <div class="doc-item" id="docCertEstudios" style="display:none;">
+      <label>6. Certificado de Estudios (Solo otras Unidades UNA) </label>
       <div class="help">Formatos: PDF, JPG</div>
       <input type="file" id="doc_cert_estudios" accept=".pdf,.jpg,.jpeg,.png">
     </div>
 
-    <div class="doc-item">
-      <label>7. Constancia de Antecedentes Disciplinarios (Solo si es de otra Unidad Académica) </label>
+    <div class="doc-item" id="docDisciplinarios" style="display:none;">
+      <label>7. Constancia de Antecedentes Disciplinarios (Solo otras Unidades UNA) </label>
       <div class="help">Emitido por la Facultad de origen. Formatos: PDF, JPG</div>
       <input type="file" id="doc_disciplinarios" accept=".pdf,.jpg,.jpeg,.png">
     </div>
@@ -132,6 +406,12 @@
       <label>8. Constancia Laboral con Horario (Solo si es funcionario público) </label>
       <div class="help">Formatos: PDF, JPG</div>
       <input type="file" id="doc_laboral" accept=".pdf,.jpg,.jpeg,.png">
+    </div>
+
+    <div class="doc-item">
+      <label>9. Certificados de Cursos Relacionados (opcional) </label>
+      <div class="help">Adjunte los certificados de los cursos declarados. Formatos: PDF, JPG</div>
+      <input type="file" id="doc_cursos" accept=".pdf,.jpg,.jpeg,.png" multiple>
     </div>
   </div>
 
@@ -153,6 +433,108 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Mostrar/ocultar campo de nota según tipo de postulante
+function toggleEstudiante() {
+  const tipo = document.getElementById('tipoPostulante').value;
+  const campoNota = document.getElementById('campoNota');
+  const notaInput = document.getElementById('notaAsignatura');
+  
+  if (tipo === 'estudiante' || tipo === 'estudiante_una') {
+    campoNota.style.display = 'block';
+    notaInput.required = true;
+  } else {
+    campoNota.style.display = 'none';
+    notaInput.required = false;
+    notaInput.value = 0;
+  }
+
+  const esOtraUnidad = tipo === 'estudiante_una';
+  document.getElementById('docCertEstudios').style.display = esOtraUnidad ? 'block' : 'none';
+  document.getElementById('docDisciplinarios').style.display = esOtraUnidad ? 'block' : 'none';
+}
+
+// Mostrar/ocultar campos de cátedras
+function toggleCatedras() {
+  const situacion = document.getElementById('situacionDocente').value;
+  const campo = document.getElementById('campoCatedras');
+  
+  if (situacion === 'escalafonado' || situacion === 'encargado' || situacion === 'auxiliar') {
+    campo.style.display = 'block';
+  } else {
+    campo.style.display = 'none';
+  }
+}
+
+// Mostrar/ocultar experiencia como auxiliar
+function toggleExperiencia() {
+  const fueAuxiliar = document.getElementById('fueAuxiliar').value;
+  const camposExp = document.getElementById('camposExperiencia');
+  const cardAuto = document.getElementById('cardAutoevaluacion');
+  
+  if (fueAuxiliar === 'si') {
+    camposExp.style.display = 'block';
+    cardAuto.style.display = 'block';
+    camposExp.querySelectorAll('input, select, textarea').forEach(c => c.required = true);
+    cardAuto.querySelectorAll('input, select, textarea').forEach(c => c.required = true);
+  } else {
+    camposExp.style.display = 'none';
+    cardAuto.style.display = 'none';
+    camposExp.querySelectorAll('input, select, textarea').forEach(c => c.required = false);
+    cardAuto.querySelectorAll('input, select, textarea').forEach(c => c.required = false);
+  }
+}
+
+// Agregar segunda materia
+function agregarMateria() {
+  const container = document.getElementById('materiasContainer');
+  const rows = container.querySelectorAll('.materia-row');
+  
+  if (rows.length >= 2) {
+    alert('Solo puede postular a 2 materias como máximo (Art. 10°).');
+    return;
+  }
+
+  const newRow = document.createElement('div');
+  newRow.className = 'materia-row';
+  newRow.innerHTML = `
+    <span class="prioridad">2°</span>
+    <select class="materia-select">
+      <option value="">-- Seleccione materia --</option>
+      <option value="23011 Mecánica y Calor">23011 Mecánica y Calor</option>
+      <option value="23012 Cálculo 1">23012 Cálculo 1</option>
+      <option value="23013 Geometría Vectorial">23013 Geometría Vectorial</option>
+      <option value="23014 Algebra Moderna">23014 Algebra Moderna</option>
+      <option value="23016 Dibujo Técnico">23016 Dibujo Técnico</option>
+      <option value="23015 Geometría Descriptiva">23015 Geometría Descriptiva</option>
+      <option value="23031 Electricidad y Magnetismo">23031 Electricidad y Magnetismo</option>
+      <option value="23032 Ecuaciones Diferenciales">23032 Ecuaciones Diferenciales</option>
+      <option value="23033 Probabilidad">23033 Probabilidad</option>
+      <option value="23034 Análisis Vectorial">23034 Análisis Vectorial</option>
+      <option value="23035 Estática">23035 Estática</option>
+      <option value="23431-23731 Estructura de Datos y Algoritmos">23431-23731 Estructura de Datos y Algoritmos</option>
+      <option value="23432 Instrumentación Electrónica Básica">23432 Instrumentación Electrónica Básica</option>
+      <option value="23531 Físico-Química Ambiental">23531 Físico-Química Ambiental</option>
+    </select>
+    <button type="button" onclick="this.parentElement.remove()">✕</button>
+  `;
+  container.appendChild(newRow);
+}
+
+// Agregar curso
+function agregarCurso() {
+  const container = document.getElementById('cursosContainer');
+  const newRow = document.createElement('div');
+  newRow.className = 'curso-row';
+  newRow.innerHTML = `
+    <input type="text" class="curso-nombre" placeholder="Nombre del curso">
+    <input type="text" class="curso-institucion" placeholder="Institución">
+    <input type="number" class="curso-anio" placeholder="Año" min="2000" max="2026">
+    <input type="number" class="curso-horas" placeholder="Horas" min="1">
+    <button type="button" onclick="this.parentElement.remove()">✕</button>
+  `;
+  container.appendChild(newRow);
+}
+
 async function generarZip(e) {
   e.preventDefault();
   const status = document.getElementById('status');
@@ -165,17 +547,78 @@ async function generarZip(e) {
 
     const nombre = document.getElementById('nombre').value.trim();
     const ci = document.getElementById('ci').value.trim();
-    const materia = document.getElementById('materia').value;
+    const email = document.getElementById('email').value.trim();
+    const tipoPostulante = document.getElementById('tipoPostulante').value;
+    const situacionDocente = document.getElementById('situacionDocente').value;
+    const fueAuxiliar = document.getElementById('fueAuxiliar').value;
 
-    if (!nombre || !ci || !materia) throw new Error('Complete los datos obligatorios.');
+    if (!nombre || !ci || !email || !tipoPostulante || !situacionDocente || !fueAuxiliar) {
+      throw new Error('Complete todos los datos obligatorios.');
+    }
+
+    // Obtener materias con prioridad
+    const materias = [];
+    document.querySelectorAll('.materia-select').forEach((sel, idx) => {
+      if (sel.value) {
+        materias.push({ prioridad: idx + 1, materia: sel.value });
+      }
+    });
+
+    if (materias.length === 0) throw new Error('Seleccione al menos una materia.');
+
+    // Obtener cursos
+    const cursos = [];
+    document.querySelectorAll('.curso-row').forEach(row => {
+      const nombreCurso = row.querySelector('.curso-nombre').value.trim();
+      const institucion = row.querySelector('.curso-institucion').value.trim();
+      const anio = row.querySelector('.curso-anio').value;
+      const horas = row.querySelector('.curso-horas').value;
+      if (nombreCurso) {
+        cursos.push({ nombre: nombreCurso, institucion, anio, horas });
+      }
+    });
 
     const nombreCarpeta = nombre.replace(/\s+/g, '-') + '-' + ci;
-    const carpetaMateria = materia.replace(/\s+/g, '_');
 
     const zip = new JSZip();
-    const basePath = carpetaMateria + '/' + nombreCarpeta + '/';
 
-    // Lista de documentos (id del input, nombre de archivo final)
+    // Datos generales del postulante
+    const datosGenerales = {
+      nombre, ci, email, tipoPostulante, situacionDocente, fueAuxiliar,
+      materias,
+      cursos,
+      fecha: new Date().toISOString()
+    };
+
+    // Datos de cátedras actuales
+    if (situacionDocente === 'escalafonado' || situacionDocente === 'encargado' || situacionDocente === 'auxiliar') {
+      datosGenerales.catedrasActuales = {
+        totalAsignaturas: document.getElementById('totalAsignaturas').value,
+        asignaturasDepto: document.getElementById('asignaturasDepto').value,
+        detalle: document.getElementById('detalleAsignaturas').value
+      };
+    }
+
+    // Datos de experiencia como auxiliar
+    if (fueAuxiliar === 'si') {
+      datosGenerales.experienciaAuxiliar = {
+        anios: document.getElementById('aniosExperiencia').value,
+        materias: document.getElementById('materiasAuxiliar').value,
+        periodos: document.getElementById('periodosAuxiliar').value
+      };
+
+      datosGenerales.autoevaluacion = {
+        enseno2026: document.getElementById('enseno2026').value,
+        puntajeAuto: document.getElementById('puntajeAuto').value,
+        logros: document.getElementById('logros').value,
+        dificultades: document.getElementById('dificultades').value,
+        mejoras: document.getElementById('mejoras').value,
+        conflicto: document.getElementById('conflicto').value,
+        aporte: document.getElementById('aporte').value
+      };
+    }
+
+    // Documentos obligatorios
     const documentos = [
       { id: 'doc_solicitud', nombre: '01_Solicitud_Decano' },
       { id: 'doc_antecedentes', nombre: '02_Antecedentes_Policiales' },
@@ -189,12 +632,31 @@ async function generarZip(e) {
 
     let archivosAgregados = 0;
 
-    for (const doc of documentos) {
-      const input = document.getElementById(doc.id);
-      const file = input.files[0];
-      if (file) {
+    // Generar una carpeta por cada materia
+    for (const m of materias) {
+      const carpetaMateria = m.materia.replace(/\s+/g, '_');
+      const basePath = carpetaMateria + '/' + nombreCarpeta + '/';
+
+      zip.file(basePath + 'datos_postulante.json', JSON.stringify(datosGenerales, null, 2));
+
+      for (const doc of documentos) {
+        const input = document.getElementById(doc.id);
+        const file = input.files[0];
+        if (file) {
+          const ext = file.name.split('.').pop();
+          zip.file(basePath + doc.nombre + '.' + ext, file);
+          archivosAgregados++;
+        }
+      }
+    }
+
+    // Adjuntar certificados de cursos (van a una carpeta general)
+    const inputCursos = document.getElementById('doc_cursos');
+    if (inputCursos.files.length > 0) {
+      for (let i = 0; i < inputCursos.files.length; i++) {
+        const file = inputCursos.files[i];
         const ext = file.name.split('.').pop();
-        zip.file(basePath + doc.nombre + '.' + ext, file);
+        zip.file('Cursos_Relacionados/' + nombreCarpeta + '/Curso_' + (i+1) + '.' + ext, file);
         archivosAgregados++;
       }
     }
@@ -205,14 +667,14 @@ async function generarZip(e) {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = carpetaMateria + '_' + nombreCarpeta + '.zip';
+    a.download = nombreCarpeta + '_Postulacion.zip';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     status.className = 'status ok';
-    status.innerHTML = '✅ ZIP generado correctamente.<br>📁 Carpeta: <strong>' + carpetaMateria + '/' + nombreCarpeta + '/</strong>';
+    status.innerHTML = '✅ ZIP generado correctamente.<br>📁 Carpetas: ' + materias.map(m => m.materia.replace(/\s+/g, '_')).join(', ') + '/' + nombreCarpeta + '<br>📁 Cursos: Cursos_Relacionados/' + nombreCarpeta;
   } catch (err) {
     status.className = 'status error';
     status.textContent = '❌ ' + err.message;
@@ -220,6 +682,10 @@ async function generarZip(e) {
     btn.disabled = false;
   }
 }
+
+// Inicializar
+toggleEstudiante();
+toggleCatedras();
 </script>
 </body>
 </html>
