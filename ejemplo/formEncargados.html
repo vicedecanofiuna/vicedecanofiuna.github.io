@@ -3,49 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Concurso Docente FIUNA - Demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Concurso Docente FIUNA - Postulación</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; color: #333; padding: 15px; }
-  .container { max-width: 900px; margin: 0 auto; }
-  
-  header { background: linear-gradient(135deg, #003366, #00509e); color: #fff; padding: 25px; border-radius: 12px; margin-bottom: 20px; text-align: center; }
+  .container { max-width: 950px; margin: 0 auto; }
+
+  header { background: linear-gradient(135deg, #003366, #00509e); color: #fff; padding: 25px; border-radius: 12px; margin-bottom: 20px; }
   header h1 { font-size: 1.5em; margin-bottom: 8px; }
-  header p { opacity: 0.9; font-size: 0.95em; }
-  
+  header p { opacity: 0.95; font-size: 0.95em; line-height: 1.5; }
+
+  .info { background: #e8f4fd; border-left: 5px solid #00509e; padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9em; line-height: 1.6; }
+  .info strong { color: #003366; }
+  .info ul { margin-left: 20px; margin-top: 8px; }
+  .info li { margin-bottom: 4px; }
+
   .card { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 15px; }
   .card h2 { color: #003366; font-size: 1.15em; border-bottom: 2px solid #003366; padding-bottom: 8px; margin-bottom: 15px; }
+  .card h3 { color: #00509e; font-size: 1em; margin: 15px 0 8px 0; }
   .obligatorio { border-left: 5px solid #ffc107; background: #fffdf5; }
-  
+
   .field { margin-bottom: 12px; }
   .field label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.92em; }
   .field .help { font-size: 0.82em; color: #777; margin-bottom: 6px; }
-  .field input[type=text], .field input[type=email], .field select { width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95em; }
-  
-  .item { padding: 12px; background: #f9fafb; border-left: 4px solid #00509e; border-radius: 6px; margin-bottom: 10px; }
+  .field input[type=text], .field input[type=email], .field input[type=number], .field select, .field textarea {
+    width: 100%; padding: 9px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95em; font-family: inherit;
+  }
+  .field textarea { min-height: 60px; resize: vertical; }
+
+  .item { padding: 14px; background: #f9fafb; border-left: 4px solid #00509e; border-radius: 6px; margin-bottom: 12px; }
   .item label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.92em; }
   .item .help { font-size: 0.8em; color: #777; margin-bottom: 8px; }
   .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
   .row input[type=number] { width: 80px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
   .row input[type=text] { flex: 1; min-width: 150px; padding: 6px; border: 1px solid #ccc; border-radius: 4px; }
   .row input[type=file] { font-size: 0.85em; }
-  
+
+  .regla {
+    background: #fff8e1;
+    border-left: 4px solid #ffc107;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.82em;
+    line-height: 1.5;
+    color: #5c4813;
+    margin-bottom: 10px;
+  }
+  .regla strong { color: #8a6d00; }
+  .regla .ref { font-size: 0.85em; color: #999; font-style: italic; display: block; margin-top: 4px; }
+  .regla .puntos { display: inline-block; background: #003366; color: #fff; padding: 2px 8px; border-radius: 10px; font-weight: bold; font-size: 0.9em; margin-right: 5px; }
+
   .subtotal { background: #e3f2fd; padding: 8px 12px; border-radius: 6px; font-weight: bold; color: #003366; margin-top: 10px; font-size: 0.95em; }
-  
+
   .total { background: linear-gradient(135deg, #003366, #00509e); color: #fff; padding: 25px; border-radius: 10px; text-align: center; margin-bottom: 15px; }
   .total .num { font-size: 2.2em; font-weight: bold; display: block; margin-top: 5px; }
   .total .label { font-size: 0.95em; opacity: 0.9; }
-  
+
   button { background: #003366; color: #fff; border: none; padding: 14px 28px; font-size: 1em; border-radius: 8px; cursor: pointer; width: 100%; font-weight: 600; }
   button:hover { background: #00509e; }
   button:disabled { background: #999; cursor: not-allowed; }
-  
+
   .status { padding: 12px; border-radius: 8px; margin-top: 12px; display: none; font-size: 0.9em; }
   .status.ok { background: #d4edda; color: #155724; display: block; }
   .status.error { background: #f8d7da; color: #721c24; display: block; }
   .status.info { background: #d1ecf1; color: #0c5460; display: block; }
-  
+
+  .materia-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; padding: 10px; background: #eef6ff; border-radius: 6px; }
+  .materia-row .orden { font-weight: bold; color: #003366; width: 40px; text-align: center; background: #fff; padding: 6px; border-radius: 6px; }
+  .materia-row select { flex: 1; padding: 7px; border: 1px solid #ccc; border-radius: 6px; }
+  .materia-row .tipo { width: 140px; }
+
+  .checkbox-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; margin-top: 8px; }
+  .checkbox-item { display: flex; align-items: center; gap: 6px; padding: 8px; background: #f4f8fb; border-radius: 6px; font-size: 0.88em; cursor: pointer; }
+  .checkbox-item input { margin: 0; }
+
+  .tag { display: inline-block; padding: 3px 8px; background: #00509e; color: #fff; border-radius: 12px; font-size: 0.75em; margin-left: 5px; }
+
+  .aviso { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; border-radius: 6px; font-size: 0.85em; margin-top: 10px; }
+
   .footer { text-align: center; color: #888; font-size: 0.8em; margin-top: 20px; padding: 15px; }
+
+  @media (max-width: 600px) {
+    .materia-row { flex-direction: column; align-items: stretch; }
+    .materia-row .orden { width: 100%; }
+    .materia-row .tipo { width: 100%; }
+  }
 </style>
 </head>
 <body>
@@ -53,13 +96,24 @@
 
 <header>
   <h1>🎓 Concurso Docente Encargado - FIUNA</h1>
-  <p>Departamento de Ciencias Básicas - Sede San Lorenzo</p>
-  <p style="font-size:0.85em; margin-top:8px;">Demo · Complete el formulario y descargue su ZIP</p>
+  <p>Departamento de Ciencias Básicas · Sede San Lorenzo</p>
+  <p style="font-size:0.85em; margin-top:8px;">Resolución CD N° 1560/2024/005</p>
 </header>
+
+<div class="info">
+  <strong>📖 Información importante para el postulante:</strong>
+  <ul>
+    <li>Puede postularse a un <strong>máximo de 10 materias por semestre</strong>.</li>
+    <li>Puede postularse a un <strong>máximo de 2 materias por departamento</strong>.</li>
+    <li>Debe indicar el <strong>orden de prioridad</strong> de cada materia (1 = mayor prioridad).</li>
+    <li>Si la materia es de <strong>curso profesional</strong>, debe acreditar <strong>experiencia laboral o investigación</strong> en la línea.</li>
+    <li>Se valorará la <strong>experiencia docente previa</strong> en la materia y el <strong>escalafonamiento</strong>.</li>
+    <li>Los <strong>cursos de capacitación</strong> relacionados a la materia suman puntaje.</li>
+  </ul>
+</div>
 
 <form id="formConcurso" onsubmit="procesarFormulario(event)">
 
-<!-- DATOS DEL POSTULANTE -->
 <div class="card obligatorio">
   <h2>👤 Datos del Postulante</h2>
   <div class="field">
@@ -75,41 +129,129 @@
     <input type="email" id="email" required placeholder="correo@ejemplo.com">
   </div>
   <div class="field">
-    <label>Materia a la que se postula *</label>
-    <select id="materia" required>
-      <option value="">-- Seleccione --</option>
-      <option value="23011 Mecánica y Calor">23011 Mecánica y Calor</option>
-      <option value="23012 Cálculo 1">23012 Cálculo 1</option>
-      <option value="23013 Geometría Vectorial">23013 Geometría Vectorial</option>
-      <option value="23016 Dibujo Técnico">23016 Dibujo Técnico</option>
-      <option value="23033 Probabilidad">23033 Probabilidad</option>
-      <option value="23034 Análisis Vectorial">23034 Análisis Vectorial</option>
-      <option value="23035 Estática">23035 Estática</option>
+    <label>Teléfono / Celular</label>
+    <input type="text" id="telefono" placeholder="Ej: 0981 123 456">
+  </div>
+  <div class="field">
+    <label>Departamento al que pertenece (si es docente UNA/FIUNA)</label>
+    <input type="text" id="departamento" placeholder="Ej: Ciencias Básicas">
+  </div>
+</div>
+
+<div class="card">
+  <h2>📚 Materias a las que postula</h2>
+  <p class="help">Máximo 10 materias por semestre · Máximo 2 por departamento · Indique orden de prioridad</p>
+
+  <div class="aviso">
+    ⚠️ <strong>Recuerde:</strong> No puede postularse a más de 2 materias del mismo departamento.
+  </div>
+
+  <div id="listaMaterias" style="margin-top:15px;"></div>
+
+  <button type="button" onclick="agregarMateria()" style="background:#00509e; margin-top:10px;">
+    ➕ Agregar materia
+  </button>
+
+  <div class="subtotal">Total de materias seleccionadas: <span id="totalMaterias">0</span> / 10</div>
+</div>
+
+<div class="card">
+  <h2>👨‍🏫 Experiencia Docente</h2>
+
+  <div class="field">
+    <label>Años de experiencia docente (total)</label>
+    <input type="number" id="aniosExperiencia" min="0" max="50" value="0">
+  </div>
+
+  <div class="field">
+    <label>¿Está escalafonado en alguna materia?</label>
+    <select id="escalafonado" onchange="toggleEscalafonado()">
+      <option value="no">No</option>
+      <option value="si">Sí</option>
     </select>
   </div>
+
+  <div id="escalafonadoDetalle" style="display:none;">
+    <div class="field">
+      <label>Materia(s) en las que está escalafonado</label>
+      <input type="text" id="materiaEscalafonado" placeholder="Ej: Cálculo 1, Álgebra Lineal">
+    </div>
+    <div class="field">
+      <label>Años desde que se escalafonó</label>
+      <input type="number" id="aniosEscalafonado" min="0" max="50" value="0">
+    </div>
+  </div>
+
+  <h3>📖 Materias que ya enseñó</h3>
+  <p class="help">Seleccione todas las materias en las que tiene experiencia docente previa.</p>
+  <div class="checkbox-group" id="materiasEnsenadas"></div>
+
+  <div class="field" style="margin-top:15px;">
+    <label>📎 Comprobante de experiencia docente (opcional)</label>
+    <input type="file" id="fileExperiencia" accept=".pdf,.jpg,.png">
+  </div>
 </div>
 
-<!-- OBLIGATORIOS -->
-<div class="card obligatorio">
-  <h2>📋 Documentos Obligatorios</h2>
-  <div class="item">
-    <label>1. Curriculum Vitae *</label>
-    <input type="file" id="cv" accept=".pdf,.jpg,.png" required>
+<div class="card">
+  <h2>💼 Experiencia Laboral / Investigación</h2>
+  <p class="help">Requerido si postula a materias de <strong>curso profesional</strong>.</p>
+
+  <div class="field">
+    <label>Años de experiencia laboral en el área</label>
+    <input type="number" id="aniosLaboral" min="0" max="50" value="0">
   </div>
-  <div class="item">
-    <label>2. Fotocopia de Títulos *</label>
-    <input type="file" id="titulos" accept=".pdf,.jpg,.png" required>
+
+  <div class="field">
+    <label>Años de experiencia en investigación</label>
+    <input type="number" id="aniosInvestigacion" min="0" max="50" value="0">
   </div>
-  <div class="item">
-    <label>3. Manifestación Jurada *</label>
-    <input type="file" id="manifestacion" accept=".pdf,.jpg,.png" required>
+
+  <div class="field">
+    <label>Descripción de la experiencia laboral / investigación</label>
+    <textarea id="descripcionLaboral" placeholder="Describa brevemente su experiencia más relevante..."></textarea>
+  </div>
+
+  <div class="field">
+    <label>📎 Comprobante laboral / investigación</label>
+    <input type="file" id="fileLaboral" accept=".pdf,.jpg,.png">
   </div>
 </div>
 
-<!-- A1 -->
+<div class="card">
+  <h2>🎓 Cursos relacionados a las materias</h2>
+  <p class="help">Seleccione los cursos de capacitación que haya realizado y que estén relacionados con las materias a las que postula.</p>
+
+  <div class="checkbox-group" id="cursosRelacionados"></div>
+
+  <div class="field" style="margin-top:15px;">
+    <label>Otros cursos (especifique)</label>
+    <input type="text" id="otrosCursos" placeholder="Ej: Curso de Didáctica Universitaria 120hs">
+  </div>
+
+  <div class="field">
+    <label>📎 Comprobante de cursos</label>
+    <input type="file" id="fileCursos" accept=".pdf,.jpg,.png">
+  </div>
+</div>
+
 <div class="card">
   <h2>📌 A1. Postgrado (Tope 20)</h2>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">Tope 20 pts</span>
+      <strong>¿Qué puntúa?</strong> Solo el <strong>grado máximo</strong> alcanzado. No se suman entre sí.
+      <ul style="margin-left:18px; margin-top:6px;">
+        <li><strong>Doctorado relacionado</strong> con ranking ≥ UNA: 11 a 20 pts</li>
+        <li><strong>Doctorado relacionado</strong> con ranking &lt; UNA: 6 a 10 pts</li>
+        <li><strong>Maestría relacionada</strong> con ranking ≥ UNA: 9 a 15 pts</li>
+        <li><strong>Maestría relacionada</strong> con ranking &lt; UNA: 1 a 8 pts</li>
+        <li><strong>Especialización ≥360hs relacionada</strong>: hasta 10 pts</li>
+        <li><strong>Especialización en Didáctica Universitaria</strong>: 4 pts</li>
+      </ul>
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, Títulos (A1)</span>
+    </div>
+
     <label>Seleccione su grado máximo *</label>
     <select id="selectorA1" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
       <option value="0">Ninguno (0 pts)</option>
@@ -122,99 +264,178 @@
       <option value="10">Doctorado relacionado ranking &lt; UNA (10 pts)</option>
     </select>
     <div style="margin-top:8px;">
-      <label style="font-size:0.85em;">📎 Comprobante:</label>
+      <label style="font-size:0.85em;">📎 Comprobante de título de postgrado:</label>
       <input type="file" id="fileA1_1" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">Tope 5 pts</span>
+      <strong>¿Qué puntúa?</strong> Cursos de capacitación y actualización relacionados a la asignatura.
+      <br><strong>Fórmula:</strong> 1 punto por cada 100 horas.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A1.4</span>
+    </div>
     <label>A1.2. Capacitación y Actualización (máx 5)</label>
     <div class="row">
       <input type="number" id="puntA1_2" data-group="A1" min="0" max="5" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comA1_2">
+      <input type="text" placeholder="Comentario (ej: 300hs = 3 pts)" id="comA1_2">
       <input type="file" id="fileA1_2" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
+  <div class="item">
+    <div class="regla">
+      <span class="puntos">Tope 2 pts</span>
+      <strong>¿Qué puntúa?</strong> Bono por capacitación en <strong>Didáctica Universitaria</strong> mayor a 100 horas.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A1.5</span>
+    </div>
+    <label>A1.3. Bono Didáctica Universitaria &gt;100hs</label>
+    <div class="row">
+      <input type="number" id="puntA1_3" data-group="A1" min="0" max="2" value="0" onchange="calcular()">
+      <input type="text" placeholder="Comentario" id="comA1_3">
+      <input type="file" id="fileA1_3" accept=".pdf,.jpg,.png">
+    </div>
+  </div>
+
   <div class="subtotal">Subtotal A1: <span id="subA1">0</span> / 20</div>
 </div>
 
-<!-- B1 -->
 <div class="card">
   <h2>📌 B1. Grado (Tope 20)</h2>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">Tope 20 pts</span>
+      <strong>¿Qué puntúa?</strong> Solo el <strong>título de grado de mayor puntaje</strong>. No es sumativo.
+      <ul style="margin-left:18px; margin-top:6px;">
+        <li>Título de Ingeniero egresado de la <strong>FIUNA</strong>: 20 pts</li>
+        <li>Título máximo de otra unidad académica <strong>UNA</strong> en área afín (mín. 3600hs): 15 pts</li>
+        <li>Título de Ingeniero de otras universidades afín (ranking ≥ UNA = 12-20): 20 pts</li>
+        <li>Título de Ingeniero de otras universidades (ranking ≥ UNA = 7-10): 10 pts</li>
+        <li>Título máximo de universidades locales (carreras acreditadas): 7 pts</li>
+        <li>Título de Licenciado UNA en área afín: 5 pts</li>
+        <li>Título de Licenciado de otras universidades: 3 pts</li>
+      </ul>
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, B1</span>
+    </div>
+
     <label>Seleccione su título máximo *</label>
     <select id="selectorB1" required style="width:100%; padding:8px; border:1px solid #ccc; border-radius:6px;">
       <option value="0">Ninguno (0 pts)</option>
       <option value="20">Ingeniero FIUNA (20 pts)</option>
       <option value="15">Título UNA área afín ≥3600hs (15 pts)</option>
-      <option value="10">Ingeniero otras Univ. (10 pts)</option>
+      <option value="20">Ingeniero otras Univ. afín ranking ≥ UNA 12-20 (20 pts)</option>
+      <option value="10">Ingeniero otras Univ. ranking ≥ UNA 7-10 (10 pts)</option>
       <option value="7">Título Univ. local acreditada (7 pts)</option>
       <option value="5">Licenciado UNA área afín (5 pts)</option>
       <option value="3">Licenciado otras Univ. (3 pts)</option>
     </select>
     <div style="margin-top:8px;">
-      <label style="font-size:0.85em;">📎 Comprobante:</label>
+      <label style="font-size:0.85em;">📎 Comprobante de título:</label>
       <input type="file" id="fileB1_1" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="subtotal">Subtotal B1: <span id="subB1">0</span> / 20</div>
 </div>
 
-<!-- A2 -->
 <div class="card">
   <h2>📌 A2. Docencia (Tope 10)</h2>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/año · Tope 5</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>Docente Escalafonado en FIUNA</strong> en cátedra afín.
+      <br><strong>Fórmula:</strong> 1 punto por año de antigüedad.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.1</span>
+    </div>
     <label>A2.1. Docente Escalafonado FIUNA (máx 5)</label>
     <div class="row">
       <input type="number" id="puntA2_1" data-group="A2" min="0" max="5" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comA2_1">
+      <input type="text" placeholder="Años y comentario" id="comA2_1">
       <input type="file" id="fileA2_1" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">0,75 p/año · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>Docente Encargado de Cátedra en FIUNA</strong> en cátedra afín.
+      <br><strong>Fórmula:</strong> 0,75 puntos por año.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.2</span>
+    </div>
     <label>A2.2. Docente Encargado FIUNA (máx 3)</label>
     <div class="row">
       <input type="number" id="puntA2_2" data-group="A2" min="0" max="3" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comA2_2">
+      <input type="text" placeholder="Años y comentario" id="comA2_2">
       <input type="file" id="fileA2_2" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/año · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>Jefe o responsable de cátedra afín</strong>.
+      <br><strong>Fórmula:</strong> 1 punto por año.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, A2.3</span>
+    </div>
     <label>A2.3. Jefe de cátedra afín (máx 3)</label>
     <div class="row">
       <input type="number" id="puntA2_3" data-group="A2" min="0" max="3" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comA2_3">
+      <input type="text" placeholder="Años y comentario" id="comA2_3">
       <input type="file" id="fileA2_3" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="subtotal">Subtotal A2: <span id="subA2">0</span> / 10</div>
 </div>
 
-<!-- B2 -->
 <div class="card">
   <h2>📌 B2. Investigación (Tope 8)</h2>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">Hasta 8 pts</span>
+      <strong>¿Qué puntúa?</strong> Estar <strong>categorizado en el PRONII</strong>.
+      <br><strong>Fórmula:</strong> 1 punto por categoría (Candidato, Nivel 1, Nivel 2), Nivel 3 = 8 puntos.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, B2.1</span>
+    </div>
     <label>B2.1. Categorizado PRONII (máx 8)</label>
     <div class="row">
       <input type="number" id="puntB2_1" data-group="B2" min="0" max="8" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comB2_1">
+      <input type="text" placeholder="Nivel PRONII" id="comB2_1">
       <input type="file" id="fileB2_1" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">2 p/proyecto · Tope 4</span>
+      <strong>¿Qué puntúa?</strong> No categorizado en PRONII pero <strong>líder de proyectos de investigación</strong> en áreas afines, en los últimos 5 años.
+      <br><strong>Fórmula:</strong> 2 puntos por proyecto.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, B2.2</span>
+    </div>
     <label>B2.2. Líder proyectos investigación (máx 4)</label>
     <div class="row">
       <input type="number" id="puntB2_2" data-group="B2" min="0" max="4" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comB2_2">
+      <input type="text" placeholder="Cantidad de proyectos" id="comB2_2">
       <input type="file" id="fileB2_2" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="subtotal">Subtotal B2: <span id="subB2">0</span> / 8</div>
 </div>
 
-<!-- C2 -->
 <div class="card">
   <h2>📌 C2. Extensión (Tope 7)</h2>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">Tope 4</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>líder de proyecto de extensión</strong> en áreas afines a las carreras de FIUNA, documentado y enmarcado en el Estatuto de la UNA y el Reglamento de Extensión vigente.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, C2.1</span>
+    </div>
     <label>C2.1. Líder proyecto extensión (máx 4)</label>
     <div class="row">
       <input type="number" id="puntC2_1" data-group="C2" min="0" max="4" value="0" onchange="calcular()">
@@ -222,60 +443,89 @@
       <input type="file" id="fileC2_1" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/proyecto · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Haber <strong>co-organizado proyectos de extensión</strong>, documentados y enmarcados en el Estatuto de la UNA y el Reglamento de Extensión vigente.
+      <br><strong>Fórmula:</strong> 1 punto por proyecto.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, C2.2</span>
+    </div>
     <label>C2.2. Co-organizador extensión (máx 3)</label>
     <div class="row">
       <input type="number" id="puntC2_2" data-group="C2" min="0" max="3" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comC2_2">
+      <input type="text" placeholder="Cantidad de proyectos" id="comC2_2">
       <input type="file" id="fileC2_2" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="subtotal">Subtotal C2: <span id="subC2">0</span> / 7</div>
 </div>
 
-<!-- D2 -->
 <div class="card">
   <h2>📌 D2. Publicaciones (Tope 10)</h2>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">2 p/autor · 1 p/co-autor · Tope 4</span>
+      <strong>¿Qué puntúa?</strong> Artículos científicos en <strong>revistas internacionales indexadas</strong>.
+      <br><strong>Fórmula:</strong> 2 puntos por publicación como autor principal, 1 punto como co-autor.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, D2.1</span>
+    </div>
     <label>D2.1. Artículos indexados (máx 4)</label>
     <div class="row">
       <input type="number" id="puntD2_1" data-group="D2" min="0" max="4" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comD2_1">
+      <input type="text" placeholder="Cantidad y rol" id="comD2_1">
       <input type="file" id="fileD2_1" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="item">
+    <div class="regla">
+      <span class="puntos">1 p/publicación · Tope 3</span>
+      <strong>¿Qué puntúa?</strong> Ser <strong>autor principal de Libro o Capítulo de Libro</strong> afín a la cátedra.
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, D2.2</span>
+    </div>
     <label>D2.2. Libro/Capítulo afín (máx 3)</label>
     <div class="row">
       <input type="number" id="puntD2_2" data-group="D2" min="0" max="3" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comD2_2">
+      <input type="text" placeholder="Cantidad" id="comD2_2">
       <input type="file" id="fileD2_2" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="subtotal">Subtotal D2: <span id="subD2">0</span> / 10</div>
 </div>
 
-<!-- F2 -->
 <div class="card">
   <h2>📌 F2. Desempeño (Tope 5)</h2>
+
   <div class="item">
-    <label>Bonificación (≥50%: 2 / ≥75%: 5) · Penalización (&lt;50%: -3)</label>
+    <div class="regla">
+      <span class="puntos">-3 a +5 pts</span>
+      <strong>¿Qué puntúa?</strong> Según el <strong>Informe de Evaluación del Desempeño Docente</strong> en la misma asignatura.
+      <ul style="margin-left:18px; margin-top:6px;">
+        <li><strong>Bonificación:</strong> Mayor al 50% = 2 pts · Mayor al 75% = 5 pts</li>
+        <li><strong>Penalización:</strong> Inferior al 50% = -3 pts</li>
+      </ul>
+      <span class="ref">Ref: Resolución CD N° 1560/2024/005, Anexo I - Tabla II, F2</span>
+    </div>
+    <label>Bonificación / Penalización</label>
     <div class="row">
       <input type="number" id="puntF2" data-group="F2" min="-3" max="5" value="0" onchange="calcular()">
-      <input type="text" placeholder="Comentario" id="comF2">
+      <input type="text" placeholder="Porcentaje y comentario" id="comF2">
       <input type="file" id="fileF2" accept=".pdf,.jpg,.png">
     </div>
   </div>
+
   <div class="subtotal">Subtotal F2: <span id="subF2">0</span> / 5</div>
 </div>
 
-<!-- TOTAL -->
 <div class="total">
   <span class="label">TOTAL GENERAL</span>
   <span class="num"><span id="totalGeneral">0</span> / 80</span>
 </div>
 
-<!-- BOTÓN -->
 <div class="card" style="text-align:center;">
   <button type="submit" id="btnEnviar">📦 Generar ZIP con mis comprobantes</button>
   <div id="status" class="status"></div>
@@ -292,6 +542,175 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const MATERIAS = [
+  { codigo: '23011', nombre: 'Mecánica y Calor', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23012', nombre: 'Cálculo 1', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23013', nombre: 'Geometría Vectorial', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23016', nombre: 'Dibujo Técnico', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23416-23716', nombre: 'Dibujo Técnico', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23033', nombre: 'Probabilidad', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23034', nombre: 'Análisis Vectorial', depto: 'Ciencias Básicas', profesional: false },
+  { codigo: '23035', nombre: 'Estática', depto: 'Ciencias Básicas', profesional: true },
+  { codigo: '23131', nombre: 'Materiales de Obras Civiles', depto: 'Ingeniería Civil', profesional: true },
+  { codigo: '23231-23331-23631', nombre: 'Ciencias y Tecnología de los Materiales', depto: 'Ingeniería', profesional: true },
+  { codigo: '23432', nombre: 'Instrumentación Electrónica Básica', depto: 'Electrónica', profesional: true },
+  { codigo: '23531', nombre: 'Físico-Química Ambiental', depto: 'Ambiental', profesional: true },
+  { codigo: '23532', nombre: 'Geología General', depto: 'Geología', profesional: true },
+  { codigo: '23132', nombre: 'Geología Aplicada', depto: 'Geología', profesional: true }
+];
+
+const CURSOS = [
+  'Didáctica Universitaria (≥100hs)',
+  'Metodología de la Investigación',
+  'Uso de TIC en Educación',
+  'Evaluación por Competencias',
+  'Diseño de Material Didáctico',
+  'Aprendizaje Basado en Problemas',
+  'Docencia en Ingeniería',
+  'Ética Profesional',
+  'Gestión de Proyectos',
+  'Redacción Científica'
+];
+
+let contadorMaterias = 0;
+
+function agregarMateria() {
+  if (contadorMaterias >= 10) {
+    alert('Máximo 10 materias por semestre.');
+    return;
+  }
+  contadorMaterias++;
+
+  const contenedor = document.getElementById('listaMaterias');
+  const fila = document.createElement('div');
+  fila.className = 'materia-row';
+  fila.dataset.orden = contadorMaterias;
+
+  const orden = document.createElement('div');
+  orden.className = 'orden';
+  orden.textContent = '#' + contadorMaterias;
+  fila.appendChild(orden);
+
+  const select = document.createElement('select');
+  select.className = 'materia-select';
+  select.required = true;
+  select.innerHTML = '<option value="">-- Seleccione materia --</option>';
+  MATERIAS.forEach(function(m) {
+    const opt = document.createElement('option');
+    opt.value = m.codigo + '|' + m.nombre + '|' + m.depto + '|' + m.profesional;
+    opt.textContent = m.codigo + ' - ' + m.nombre + ' (' + m.depto + ')' + (m.profesional ? ' [PROFESIONAL]' : '');
+    select.appendChild(opt);
+  });
+  fila.appendChild(select);
+
+  const tipo = document.createElement('div');
+  tipo.className = 'tipo';
+  tipo.style.fontSize = '0.8em';
+  tipo.style.color = '#666';
+  tipo.style.padding = '6px';
+  tipo.textContent = 'Seleccione...';
+  fila.appendChild(tipo);
+
+  select.addEventListener('change', function() {
+    const val = select.value;
+    if (!val) { tipo.textContent = 'Seleccione...'; return; }
+    const parts = val.split('|');
+    const esProf = parts[3] === 'true';
+    tipo.innerHTML = esProf 
+      ? '<span class="tag" style="background:#dc3545;">PROFESIONAL</span><br><small>Requiere exp. laboral/investigación</small>'
+      : '<span class="tag" style="background:#28a745;">BÁSICA</span>';
+    validarDepartamentos();
+  });
+
+  const btnEliminar = document.createElement('button');
+  btnEliminar.type = 'button';
+  btnEliminar.textContent = '✖';
+  btnEliminar.style.cssText = 'background:#dc3545; padding:6px 10px; width:auto; border-radius:6px; font-size:0.9em;';
+  btnEliminar.onclick = function() {
+    fila.remove();
+    contadorMaterias--;
+    renumerarMaterias();
+    actualizarTotalMaterias();
+    validarDepartamentos();
+  };
+  fila.appendChild(btnEliminar);
+
+  contenedor.appendChild(fila);
+  actualizarTotalMaterias();
+}
+
+function renumerarMaterias() {
+  const filas = document.querySelectorAll('#listaMaterias .materia-row');
+  filas.forEach(function(fila, idx) {
+    fila.querySelector('.orden').textContent = '#' + (idx + 1);
+    fila.dataset.orden = idx + 1;
+  });
+  contadorMaterias = filas.length;
+}
+
+function actualizarTotalMaterias() {
+  const total = document.querySelectorAll('#listaMaterias .materia-row').length;
+  document.getElementById('totalMaterias').textContent = total;
+}
+
+function validarDepartamentos() {
+  const contador = {};
+  document.querySelectorAll('#listaMaterias .materia-select').forEach(function(sel) {
+    if (!sel.value) return;
+    const depto = sel.value.split('|')[2];
+    contador[depto] = (contador[depto] || 0) + 1;
+  });
+  let alertas = [];
+  Object.keys(contador).forEach(function(d) {
+    if (contador[d] > 2) {
+      alertas.push(d + ': ' + contador[d] + ' materias (máx 2)');
+    }
+  });
+  const aviso = document.querySelector('.aviso');
+  if (alertas.length > 0) {
+    aviso.innerHTML = '⚠️ <strong>Excede el límite por departamento:</strong> ' + alertas.join(' · ');
+    aviso.style.background = '#f8d7da';
+    aviso.style.borderLeftColor = '#dc3545';
+  } else {
+    aviso.innerHTML = '⚠️ <strong>Recuerde:</strong> No puede postularse a más de 2 materias del mismo departamento.';
+    aviso.style.background = '#fff3cd';
+    aviso.style.borderLeftColor = '#ffc107';
+  }
+}
+
+function cargarMateriasEnsenadas() {
+  const cont = document.getElementById('materiasEnsenadas');
+  MATERIAS.forEach(function(m) {
+    const label = document.createElement('label');
+    label.className = 'checkbox-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = m.codigo + ' - ' + m.nombre;
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(m.codigo + ' - ' + m.nombre));
+    cont.appendChild(label);
+  });
+}
+
+function cargarCursos() {
+  const cont = document.getElementById('cursosRelacionados');
+  CURSOS.forEach(function(curso) {
+    const label = document.createElement('label');
+    label.className = 'checkbox-item';
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = curso;
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(curso));
+    cont.appendChild(label);
+  });
+}
+
+function toggleEscalafonado() {
+  const val = document.getElementById('escalafonado').value;
+  document.getElementById('escalafonadoDetalle').style.display = val === 'si' ? 'block' : 'none';
+}
 
 function calcular() {
   const topes = { A1: 20, B1: 20, A2: 10, B2: 8, C2: 7, D2: 10, E2: 10, F2: 5 };
@@ -344,48 +763,59 @@ async function procesarFormulario(e) {
     const nombre = document.getElementById('nombre').value.trim();
     const ci = document.getElementById('ci').value.trim();
     const email = document.getElementById('email').value.trim();
-    const materia = document.getElementById('materia').value;
 
-    if (!nombre || !ci || !materia) throw new Error('Complete los datos obligatorios.');
+    if (!nombre || !ci) throw new Error('Complete nombre y CI.');
 
-    const nombreCarpeta = nombre.replace(/\s+/g, '-') + '-' + ci;
-    const carpetaMateria = materia.replace(/\s+/g, '_');
+    const filasMaterias = document.querySelectorAll('#listaMaterias .materia-row');
+    if (filasMaterias.length === 0) throw new Error('Debe seleccionar al menos una materia.');
 
-    const zip = new JSZip();
-    const basePath = carpetaMateria + '/' + nombreCarpeta + '/';
-
-    // Obligatorios
-    const obligatorios = [
-      { id: 'cv', nombre: 'CV' },
-      { id: 'titulos', nombre: 'Titulos' },
-      { id: 'manifestacion', nombre: 'Manifestacion' }
-    ];
-    for (const item of obligatorios) {
-      const file = document.getElementById(item.id).files[0];
-      if (file) {
-        const ext = file.name.split('.').pop();
-        zip.file(basePath + 'Obligatorios/' + item.nombre + '.' + ext, file);
+    const materiasSeleccionadas = [];
+    filasMaterias.forEach(function(fila) {
+      const sel = fila.querySelector('.materia-select');
+      if (sel.value) {
+        const parts = sel.value.split('|');
+        materiasSeleccionadas.push({
+          orden: parseInt(fila.dataset.orden),
+          codigo: parts[0],
+          nombre: parts[1],
+          departamento: parts[2],
+          profesional: parts[3] === 'true'
+        });
       }
-    }
-
-    // Secciones
-    const secciones = ['A1', 'B1', 'A2', 'B2', 'C2', 'D2', 'F2'];
-    document.querySelectorAll('input[type=file]').forEach(function(input) {
-      const id = input.id;
-      if (['cv', 'titulos', 'manifestacion'].includes(id)) return;
-      const file = input.files[0];
-      if (!file) return;
-      let seccion = 'Otros';
-      for (const sec of secciones) {
-        if (id.indexOf(sec) > -1) { seccion = sec; break; }
-      }
-      const ext = file.name.split('.').pop();
-      zip.file(basePath + seccion + '/' + id + '.' + ext, file);
     });
 
-    // Datos JSON
+    const ensenadas = [];
+    document.querySelectorAll('#materiasEnsenadas input:checked').forEach(function(cb) {
+      ensenadas.push(cb.value);
+    });
+
+    const cursos = [];
+    document.querySelectorAll('#cursosRelacionados input:checked').forEach(function(cb) {
+      cursos.push(cb.value);
+    });
+    const otrosCursos = document.getElementById('otrosCursos').value.trim();
+    if (otrosCursos) cursos.push(otrosCursos);
+
+    const nombreCarpeta = nombre.replace(/\s+/g, '-') + '-' + ci;
+    const zip = new JSZip();
+    const basePath = nombreCarpeta + '/';
+
     const datos = {
-      nombre, ci, email, materia,
+      nombre, ci, email,
+      telefono: document.getElementById('telefono').value.trim(),
+      departamento: document.getElementById('departamento').value.trim(),
+      materiasPostula: materiasSeleccionadas,
+      experiencia: {
+        aniosDocente: parseFloat(document.getElementById('aniosExperiencia').value) || 0,
+        escalafonado: document.getElementById('escalafonado').value === 'si',
+        materiaEscalafonado: document.getElementById('materiaEscalafonado').value.trim(),
+        aniosEscalafonado: parseFloat(document.getElementById('aniosEscalafonado').value) || 0,
+        materiasEnsenadas: ensenadas,
+        aniosLaboral: parseFloat(document.getElementById('aniosLaboral').value) || 0,
+        aniosInvestigacion: parseFloat(document.getElementById('aniosInvestigacion').value) || 0,
+        descripcionLaboral: document.getElementById('descripcionLaboral').value.trim()
+      },
+      cursosRelacionados: cursos,
       puntajes: {
         A1: parseFloat(document.getElementById('subA1').textContent),
         B1: parseFloat(document.getElementById('subB1').textContent),
@@ -400,18 +830,48 @@ async function procesarFormulario(e) {
     };
     zip.file(basePath + 'datos.json', JSON.stringify(datos, null, 2));
 
+    const obligatorios = [
+      { id: 'cv', nombre: 'CV' },
+      { id: 'titulos', nombre: 'Titulos' },
+      { id: 'manifestacion', nombre: 'Manifestacion' }
+    ];
+    for (const item of obligatorios) {
+      const file = document.getElementById(item.id).files[0];
+      if (file) {
+        const ext = file.name.split('.').pop();
+        zip.file(basePath + 'Obligatorios/' + item.nombre + '.' + ext, file);
+      }
+    }
+
+    const secciones = ['A1', 'B1', 'A2', 'B2', 'C2', 'D2', 'F2'];
+    document.querySelectorAll('input[type=file]').forEach(function(input) {
+      const id = input.id;
+      if (['cv', 'titulos', 'manifestacion'].includes(id)) return;
+      const file = input.files[0];
+      if (!file) return;
+      let seccion = 'Otros';
+      for (const sec of secciones) {
+        if (id.indexOf(sec) > -1) { seccion = sec; break; }
+      }
+      if (id === 'fileExperiencia') seccion = 'Experiencia';
+      if (id === 'fileLaboral') seccion = 'Laboral';
+      if (id === 'fileCursos') seccion = 'Cursos';
+      const ext = file.name.split('.').pop();
+      zip.file(basePath + seccion + '/' + id + '.' + ext, file);
+    });
+
     const blob = await zip.generateAsync({ type: 'blob' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = carpetaMateria + '_' + nombreCarpeta + '.zip';
+    a.download = nombreCarpeta + '.zip';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     status.className = 'status ok';
-    status.innerHTML = '✅ ZIP generado.<br>📁 <strong>' + carpetaMateria + '/' + nombreCarpeta + '/</strong>';
+    status.innerHTML = '✅ ZIP generado correctamente.<br>📁 <strong>' + nombreCarpeta + '/</strong>';
   } catch (err) {
     status.className = 'status error';
     status.textContent = '❌ ' + err.message;
@@ -420,6 +880,9 @@ async function procesarFormulario(e) {
   }
 }
 
+cargarMateriasEnsenadas();
+cargarCursos();
+agregarMateria();
 calcular();
 </script>
 </body>
